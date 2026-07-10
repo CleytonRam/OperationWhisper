@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : NetworkBehaviour
 {
     [Header("Movimento")]
-    [SerializeField] private float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float gravity = -9.81f;
 
@@ -37,6 +37,20 @@ public class PlayerController : NetworkBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        Camera cam = GetComponentInChildren<Camera>();
+        if (cam != null)
+        {
+            cam.enabled = isLocalPlayer;
+            Debug.Log(isLocalPlayer ? "Minha câmera está ativa!" : "Câmera do outro jogador desativada.");
+        }
+
+        // SÓ ATIVA O MICROFONE/ÁUDIO SE FOR O JOGADOR LOCAL
+        AudioListener listener = GetComponentInChildren<AudioListener>();
+        if (listener != null)
+        {
+            listener.enabled = isLocalPlayer;
+        }
     }
 
     void Update()

@@ -131,8 +131,9 @@ GameObject:
   - component: {fileID: 4018719318210280631}
   - component: {fileID: 23741874843775406}
   - component: {fileID: 3922205836157282387}
+  - component: {fileID: 6780343349822762420}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_Intruder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +183,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8eb86961b415fe04da2f953d19b6ac85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -219,8 +220,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  moveSpeed: 5
-  jumpForce: 5
+  moveSpeed: 7
+  jumpForce: 2
   gravity: -9.81
   mouseSensitivity: 2
   minLookAngle: -90
@@ -261,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 4086056963
+  _assetId: 3237884933
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
@@ -324,4 +325,20 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.17, z: 0}
+--- !u!114 &6780343349822762420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123864553982784801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8e5db4969dc0f499bcc6569f584b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  teamID: 0
