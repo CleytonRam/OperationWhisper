@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 23741874843775406}
   - component: {fileID: 3922205836157282387}
   - component: {fileID: -1726299498902154780}
+  - component: {fileID: -8420051239351507439}
+  - component: {fileID: 316975446502700527}
   m_Layer: 0
   m_Name: Player_Guard
   m_TagString: Untagged
@@ -342,3 +344,42 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   teamID: 0
+--- !u!114 &-8420051239351507439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123864553982784801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc60f74da946cd4ca288260fabbf49e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  currentHealth: 100
+  maxHealth: 100
+--- !u!114 &316975446502700527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123864553982784801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6ed519fbe1f51409b80062873b6204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  fireKey: 323
+  range: 50
+  shootableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  damage: 25
+  isTaser: 0

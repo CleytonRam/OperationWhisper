@@ -92,6 +92,22 @@ public class TeamManager : NetworkBehaviour
             else
                 rend.material.color = Color.blue;
         }
+
+        // Vida
+        Health health = GetComponent<Health>();
+        if (health != null)
+        {
+            if (teamID == 0) // Intruso
+            {
+                health.maxHealth = 100;
+                health.currentHealth = 100;
+            }
+            else // Guarda
+            {
+                health.maxHealth = 100;
+                health.currentHealth = 100;
+            }
+        }
     }
 
     // Funções auxiliares
