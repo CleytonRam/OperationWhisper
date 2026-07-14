@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1393440071913453740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: -8258168619028142268}
   m_Layer: 0
   m_Name: Player_Intruder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,11 +223,17 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   moveSpeed: 7
+  crouchSpeed: 2.5
+  carrySpeedMultiplier: 0.7
   jumpForce: 2
   gravity: -9.81
   mouseSensitivity: 2
   minLookAngle: -90
   maxLookAngle: 90
+  crouchHeight: 1
+  standingHeight: 2
+  crouchTransitionSpeed: 10
+  currentMoveDirection: {x: 0, y: 0, z: 0}
 --- !u!136 &5654683429543999753
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -365,7 +371,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   damage: 25
-  isTaser: 0
 --- !u!114 &-8258168619028142268
 MonoBehaviour:
   m_ObjectHideFlags: 0

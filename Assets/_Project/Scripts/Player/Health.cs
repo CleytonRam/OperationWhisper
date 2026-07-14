@@ -7,18 +7,15 @@ public class Health : NetworkBehaviour
     [SyncVar] public int currentHealth = 100;
     [SyncVar] public int maxHealth = 100;
 
-    [Header("Referências")]
     private TeamManager teamManager;
 
     void Start()
     {
         teamManager = GetComponent<TeamManager>();
-        // Todos começam com 100 de vida (definido no Inspetor ou aqui)
         maxHealth = 100;
         currentHealth = 100;
     }
 
-    // Método para tomar dano (chamado pelo servidor)
     [Server]
     public void TakeDamage(int damage, GameObject attacker)
     {
@@ -37,24 +34,27 @@ public class Health : NetworkBehaviour
     [Server]
     void Die(GameObject killer)
     {
-        Debug.Log($"{gameObject.name} morreu! Matador: {killer.name}");
-        // Desativa o personagem (pode ser substituído por animação de morte)
+        currentHealth = 0;
         gameObject.SetActive(false);
 
-        // Notifica todos os clientes (efeitos visuais, etc.)
+        // Se for Intruso, notifica o GameManager (ele mesmo conta os vivos)
+        TeamManager tm = GetComponent<TeamManager>();
+        if (tm != null && tm.IsIntruder())
+        {
+            GameManager.Instance?.IntruderDied();
+        }
+
         RpcOnDeath();
     }
 
     [ClientRpc]
     void RpcOnDeath()
     {
-        // Efeito visual/sonoro de morte (pode colocar partículas)
         Debug.Log("Morte visual ativada!");
     }
 
     public bool IsAlive() => currentHealth > 0;
 
-    // Método para curar (opcional, para testes)
     [Server]
     public void Heal(int amount)
     {

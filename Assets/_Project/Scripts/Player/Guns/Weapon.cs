@@ -8,33 +8,41 @@ public class Weapon : NetworkBehaviour
     public float range = 50f;
     public LayerMask shootableLayers = ~0;
 
-    [Header("Dano (definido automaticamente pelo time)")]
-    public int damage = 10; // Será sobrescrito no Start
+    [Header("Dano")]
+    public int damage = 10;
 
     [Header("Referências")]
     private TeamManager teamManager;
     private Transform camTransform;
+    private PlayerController playerController;
 
     void Start()
     {
         teamManager = GetComponent<TeamManager>();
+        playerController = GetComponent<PlayerController>();
         camTransform = GetComponentInChildren<Camera>()?.transform;
         if (camTransform == null)
             Debug.LogError("Nenhuma câmera encontrada no prefab!");
 
-        // Define o dano baseado no time
         if (teamManager != null)
         {
             if (teamManager.IsIntruder())
-                damage = 10;   // Intruso dá 10 de dano
+                damage = 10;
             else
-                damage = 20;   // Guarda dá 20 de dano
+                damage = 20;
         }
     }
 
     void Update()
     {
         if (!isLocalPlayer) return;
+
+        // ⛔ IMPEDE ATIRAR SE ESTIVER CARRREGANDO COFRE
+        if (playerController != null && playerController.IsCarrying())
+        {
+            Debug.Log("Não pode atirar enquanto carrega o cofre!");
+            return;
+        }
 
         if (Input.GetKeyDown(fireKey))
         {
@@ -64,10 +72,7 @@ public class Weapon : NetworkBehaviour
             Health targetHealth = hit.collider.GetComponent<Health>();
             if (targetHealth != null)
             {
-                // Não atira em si mesmo
                 if (targetHealth.gameObject == gameObject) return;
-
-                // Aplica o dano (servidor)
                 targetHealth.TakeDamage(damage, gameObject);
                 Debug.Log($"{gameObject.name} causou {damage} de dano em {targetHealth.gameObject.name}");
             }
